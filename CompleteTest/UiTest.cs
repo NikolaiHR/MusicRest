@@ -16,7 +16,8 @@ namespace CompleteTest
         #region InstanceFields
 
         private static IWebDriver _driver;
-        private static readonly string _driverDirectory = @"C:\Selenium_Drivers";
+        //private static readonly string _driverDirectory = @"C:\Selenium_Drivers";
+        private static readonly string _driverDirectory = @"C:\EASJ\UiTestDrivers";
 
         #endregion
 
