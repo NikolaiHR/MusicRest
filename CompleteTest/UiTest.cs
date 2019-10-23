@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -23,7 +24,7 @@ namespace CompleteTest
         public static void Setup(TestContext context)
         
         {
-            _driver = new FirefoxDriver(_driverDirectory);
+            _driver = new ChromeDriver(_driverDirectory);
         }
 
         [ClassCleanup]
