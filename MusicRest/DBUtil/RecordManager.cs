@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ModelLib;
 
 namespace MusicRest.DBUtil
 {
@@ -16,11 +17,30 @@ namespace MusicRest.DBUtil
 
         #endregion
 
+        #region sql statements
 
-        //public bool Get()
-        //{
-        //    SqlConnection
-        //}
+        private string _getAll = "select * from RecordsPairProgramming";
 
+
+        #endregion
+
+
+        public List<Record> Get()
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(_getAll, connection);
+            SqlDataReader sqlReader = command.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                Record record = readRecord(sqlReader);
+            }
+
+        }
+
+        private Record readRecord()
+        {
+
+        }
     }
 }
