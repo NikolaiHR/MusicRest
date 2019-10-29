@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelLib;
+using MusicRest.DBUtil;
 
 namespace MusicRest.Controllers
 {
@@ -12,6 +13,12 @@ namespace MusicRest.Controllers
     [ApiController]
     public class RecordsController : ControllerBase
     {
+        #region Manager
+
+        private RecordManager _manager = new RecordManager();
+
+        #endregion
+
         private static readonly List<Record> records = new List<Record>()
         {
             new Record("Kono Andu da!", "Andu", 420.69, 2018, "Andus største hits"),
@@ -23,7 +30,7 @@ namespace MusicRest.Controllers
         [HttpGet]
         public IEnumerable<Record> Get()
         {
-            return records;
+            return _manager.Get();
         }
 
         // GET: api/Records/5

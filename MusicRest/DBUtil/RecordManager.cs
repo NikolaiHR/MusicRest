@@ -19,7 +19,7 @@ namespace MusicRest.DBUtil
 
         #region sql statements
 
-        private string _getAll = "select * from RecordsPairProgramming";
+        private string _getAll = "select * from RecordsPairProgramming order by Title";
 
 
         #endregion
@@ -27,20 +27,37 @@ namespace MusicRest.DBUtil
 
         public List<Record> Get()
         {
+            List<Record> tempRecords = new List<Record>();
+
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
+
             SqlCommand command = new SqlCommand(_getAll, connection);
+
             SqlDataReader sqlReader = command.ExecuteReader();
+
             while (sqlReader.Read())
             {
-                Record record = readRecord(sqlReader);
+                Record record = ReadRecord(sqlReader);
+                tempRecords.Add(record);
             }
 
+            connection.Close();
+
+            return tempRecords;
         }
 
-        private Record readRecord()
+        private Record ReadRecord(SqlDataReader reader)
         {
+            Record tempRecord = new Record();
 
+            tempRecord.Title = reader.GetString(0);
+            tempRecord.Artist = reader.GetString(1);
+            tempRecord.Duration = reader.GetDouble(2);
+            tempRecord.YearOfPublication = reader.GetInt32(3);
+            tempRecord.Album = reader.GetString(4);
+
+            return tempRecord;
         }
     }
 }

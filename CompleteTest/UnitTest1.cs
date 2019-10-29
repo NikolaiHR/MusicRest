@@ -28,8 +28,8 @@ namespace CompleteTest
         List<Record> records = new List<Record>()
         {
             new Record("Kono Andu da!", "Andu", 420.69, 2018, "Andus største hits"),
-            new Record("Kono Nikolai da!", "Nikolai", 400.69, 2018, "Nikolais største hits"),
-            new Record("Kono Hoarchim da!", "Hoarchim", 380.69, 2012, "Hoarchims største hits")
+            new Record("Kono Hoarchim da!", "Hoarchim", 380.69, 2012, "Hoarchims største hits"),
+            new Record("Kono Nikolai da!", "Nikolai", 400.69, 2018, "Nikolais største hits")
         };
 
         List<Record> testRecords = (List<Record>)_manager.Get();
