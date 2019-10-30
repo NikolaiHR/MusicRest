@@ -22,8 +22,8 @@ namespace MusicRest.Controllers
         private static readonly List<Record> records = new List<Record>()
         {
             new Record("Kono Andu da!", "Andu", 420.69, 2018, "Andus største hits"),
-            new Record("Kono Nikolai da!", "Nikolai", 400.69, 2018, "Nikolais største hits"),
-            new Record("Kono Hoarchim da!", "Hoarchim", 380.69, 2012, "Hoarchims største hits")
+            new Record("Kono Hoarchim da!", "Hoarchim", 380.69, 2012, "Hoarchims største hits"),
+            new Record("Kono Nikolai da!", "Nikolai", 400.69, 2018, "Nikolais største hits")
         };
 
         // GET: api/Records
@@ -41,18 +41,12 @@ namespace MusicRest.Controllers
         }
 
         [HttpGet("{search}")]
-        public List<Record> SearchFor([FromQuery] Record value)
+        public List<Record> SearchForTitle([FromQuery] Record value)
         {
             List<Record> tempRecords = new List<Record>();
 
             
-            if (!string.IsNullOrWhiteSpace(value.Title) && string.IsNullOrWhiteSpace(value.Artist) && string.IsNullOrWhiteSpace(value.Album))
-            {
-                foreach (Record record in records.FindAll(r => r.Title.Contains(value.Title) && r.Artist.Contains(value.Artist) && r.Album.Contains(value.Album)))
-                {
-                 tempRecords.Add(record);   
-                }
-            }
+            
 
             if (!string.IsNullOrEmpty(value.Title))
             {

@@ -16,8 +16,8 @@ namespace CompleteTest
         #region InstanceFields
 
         private static IWebDriver _driver;
-        private static readonly string _driverDirectory = @"C:\Selenium_Drivers";
-        //private static readonly string _driverDirectory = @"C:\EASJ\UiTestDrivers";
+        //private static readonly string _driverDirectory = @"C:\Selenium_Drivers";
+        private static readonly string _driverDirectory = @"C:\EASJ\UiTestDrivers";
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace CompleteTest
             IWebElement getAllButton = _driver.FindElement(By.Id("getAllButton"));
             getAllButton.Click();
 
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
             IWebElement recordList = wait.Until<IWebElement>(d => d.FindElement(By.Id("recordList")));
             Assert.IsTrue(recordList.Text.Contains("Kono Andu da!"));
 
