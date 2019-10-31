@@ -19,7 +19,8 @@ namespace MusicRest.DBUtil
 
         #region sql statements
 
-        private string _getAll = "select * from RecordsPairProgramming order by Title";
+        private const string GetAll = "select * from RecordsPairProgramming order by Title";
+        private const string GetOneByTitle = "select * from RecordsPairProgramming where Title like @Title order by Title";
 
 
         #endregion
@@ -32,7 +33,7 @@ namespace MusicRest.DBUtil
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            SqlCommand command = new SqlCommand(_getAll, connection);
+            SqlCommand command = new SqlCommand(GetAll, connection);
 
             SqlDataReader sqlReader = command.ExecuteReader();
 
@@ -46,6 +47,32 @@ namespace MusicRest.DBUtil
 
             return tempRecords;
         }
+
+        public List<Record> GetByTitle(string title)
+        {
+
+            List<Record> tempRecords = new List<Record>();
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand(GetOneByTitle, connection);
+
+            command.Parameters.AddWithValue("@Title",$"'%{title}%'");
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Record recordToAdd = ReadRecord(reader);
+                tempRecords.Add(recordToAdd);
+            }
+
+            connection.Close();
+
+            return tempRecords;
+        }
+
 
         private Record ReadRecord(SqlDataReader reader)
         {

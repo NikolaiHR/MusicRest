@@ -40,23 +40,18 @@ namespace MusicRest.Controllers
             return "value";
         }
 
-        [HttpGet("{search}")]
-        public List<Record> SearchForTitle([FromQuery] Record value)
+        [HttpGet]
+        [Route("Search")]
+        public List<Record> SearchForTitle([FromQuery] Record record)
         {
-            List<Record> tempRecords = new List<Record>();
+            return _manager.GetByTitle(record.Title);
+        }
 
-            
-            
-
-            if (!string.IsNullOrEmpty(value.Title))
-            {
-                foreach (Record record in records.FindAll(r => r.Title.Contains(value.Title)))
-                {
-                    tempRecords.Add(record);
-                }
-            }
-
-            return tempRecords;
+        [HttpGet]
+        [Route("Title/{title}")]
+        public List<Record> SearchTitleTest(string title)
+        {
+            return _manager.GetByTitle(title);
         }
 
         // POST: api/Records
