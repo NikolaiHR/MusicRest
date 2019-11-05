@@ -20,7 +20,7 @@ namespace MusicRest.DBUtil
         #region sql statements
 
         private const string GetAll = "select * from RecordsPairProgramming order by Title";
-        private string GetOneByTitle = "select * from RecordsPairProgramming where Title like %@Titel% order by Title";
+        private string GetOneByTitle = "select * from RecordsPairProgramming where Title like @Title order by Title";
 
 
         #endregion
@@ -58,7 +58,7 @@ namespace MusicRest.DBUtil
 
             SqlCommand command = new SqlCommand(GetOneByTitle, connection);
 
-            command.Parameters.AddWithValue("@Titel",title);
+            command.Parameters.AddWithValue("@Title", "%" + title + "%");
 
             SqlDataReader reader = command.ExecuteReader();
 
