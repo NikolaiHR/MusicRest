@@ -12,15 +12,15 @@ namespace MusicRest.DBUtil
 
         #region ConnectionString
 
-        private string _connectionString =
-            "Data Source=ande-zealand-dbserver.database.windows.net;Initial Catalog=Ande-Zealand-DB;User ID=;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private const string ConnectionString =
+            "Data Source=ande-zealand-dbserver.database.windows.net;Initial Catalog=Ande-Zealand-DB;User ID=Ande;Password=Jsl1ktmsodsvh.;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         #endregion
 
         #region sql statements
 
         private const string GetAll = "select * from RecordsPairProgramming order by Title";
-        private const string GetOneByTitle = "select * from RecordsPairProgramming where Title like @Title order by Title";
+        private string GetOneByTitle = "select * from RecordsPairProgramming where Title like '%@Title%' order by Title";
 
 
         #endregion
@@ -30,7 +30,7 @@ namespace MusicRest.DBUtil
         {
             List<Record> tempRecords = new List<Record>();
 
-            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
 
             SqlCommand command = new SqlCommand(GetAll, connection);
@@ -53,12 +53,12 @@ namespace MusicRest.DBUtil
 
             List<Record> tempRecords = new List<Record>();
 
-            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
 
             SqlCommand command = new SqlCommand(GetOneByTitle, connection);
 
-            command.Parameters.AddWithValue("@Title",$"'%{title}%'");
+            command.Parameters.AddWithValue("@Title",title);
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -82,7 +82,6 @@ namespace MusicRest.DBUtil
             tempRecord.Artist = reader.GetString(1);
             tempRecord.Duration = reader.GetDouble(2);
             tempRecord.YearOfPublication = reader.GetInt32(3);
-            tempRecord.Album = reader.GetString(4);
 
             return tempRecord;
         }
