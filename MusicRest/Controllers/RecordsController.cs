@@ -56,8 +56,9 @@ namespace MusicRest.Controllers
 
         // POST: api/Records
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Record value)
         {
+            records.Add(value);
         }
 
         // PUT: api/Records/5
@@ -70,6 +71,7 @@ namespace MusicRest.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            //hej
         }
     }
 }
