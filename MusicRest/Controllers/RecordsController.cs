@@ -21,9 +21,9 @@ namespace MusicRest.Controllers
 
         private static readonly List<Record> records = new List<Record>()
         {
-            new Record("Kono Andu da!", "Andu", 420.69, 2018, "Andus største hits"),
-            new Record("Kono Hoarchim da!", "Hoarchim", 380.69, 2012, "Hoarchims største hits"),
-            new Record("Kono Nikolai da!", "Nikolai", 400.69, 2018, "Nikolais største hits")
+            new Record("Kono Andu Da!", "Andu", 29.4, 2018),
+            new Record("Hoarchim Da!", "Roachim", 56.3, 2000),
+            new Record("Kono Nikolairu da!", "Nikolai", 30, 2019)
         };
 
         // GET: api/Records

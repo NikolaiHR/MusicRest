@@ -48,7 +48,7 @@ namespace CompleteTest
 
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
             IWebElement recordList = wait.Until<IWebElement>(d => d.FindElement(By.Id("recordList")));
-            Assert.IsTrue(recordList.Text.Contains("Kono Andu da!"));
+            Assert.IsTrue(recordList.Text.Contains("Kono Andu Da!"));
 
 
         }
