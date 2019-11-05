@@ -12,8 +12,7 @@ namespace MusicRest.DBUtil
 
         #region ConnectionString
 
-        private const string ConnectionString =
-            "Data Source=ande-zealand-dbserver.database.windows.net;Initial Catalog=Ande-Zealand-DB;User ID=;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        
 
         #endregion
 
