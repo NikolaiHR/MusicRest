@@ -58,7 +58,7 @@ namespace MusicRest.Controllers
         [HttpPost]
         public void Post([FromBody] Record value)
         {
-            records.Add(value);
+            
         }
 
         // PUT: api/Records/5

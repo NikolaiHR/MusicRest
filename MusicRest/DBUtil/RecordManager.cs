@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using ModelLib;
 
 namespace MusicRest.DBUtil
@@ -10,17 +11,11 @@ namespace MusicRest.DBUtil
     public class RecordManager
     {
 
-        #region ConnectionString
-
-        
-
-        #endregion
-
         #region sql statements
 
         private const string GetAll = "select * from RecordsPairProgramming order by Title";
-        private string GetOneByTitle = "select * from RecordsPairProgramming where Title like @Title order by Title";
-
+        private const string GetOneByTitle = "select * from RecordsPairProgramming where Title like @Title order by Title";
+        private const string DeleteByTitle = "delete from RecordsPairProgramming where Title = @Title";
 
         #endregion
 
@@ -29,7 +24,7 @@ namespace MusicRest.DBUtil
         {
             List<Record> tempRecords = new List<Record>();
 
-            SqlConnection connection = new SqlConnection(ConnectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
             connection.Open();
 
             SqlCommand command = new SqlCommand(GetAll, connection);
@@ -52,7 +47,7 @@ namespace MusicRest.DBUtil
 
             List<Record> tempRecords = new List<Record>();
 
-            SqlConnection connection = new SqlConnection(ConnectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
             connection.Open();
 
             SqlCommand command = new SqlCommand(GetOneByTitle, connection);
@@ -83,6 +78,15 @@ namespace MusicRest.DBUtil
             tempRecord.YearOfPublication = reader.GetInt32(3);
 
             return tempRecord;
+        }
+
+        //public bool Delete(string title)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+        //    using(SqlCommand cmd = new SqlCommand(DeleteByTitle, connection)
+        //    {
+                
+        //    }
         }
     }
 }
